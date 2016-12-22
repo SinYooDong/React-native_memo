@@ -1,0 +1,6 @@
+rootProject.name = '뚜봉이'
+
+include ':app', ':daum-speech-openapi-4.0'
+
+include ':react-native-sms-android'
+project(':react-native-sms-android').projectDir = new File(settingsDir, '../node_modules/react-native-sms-android/android')
