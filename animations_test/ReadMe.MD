@@ -22,9 +22,12 @@
 
 
 
+
+
 ## Animated.timing(). 메소드
 
 "
+
 	Animated.timing(
 	  someValue,
 	  {
@@ -34,11 +37,13 @@
 	    delay: number //애니메이션 시작 딜레이 시간.
 	  }
 	)
+	
 "
 
 ## Animated.spring().  메소드
 
 "
+
 	Animated.spring(
 	    someValue,
 	    {
@@ -46,18 +51,22 @@
 	      friction: number
 	    }
 	)
+	
 "
+
+
+
 
 
 ## Animated.parallel(). 메소드
 
 "
+
 	Animated.parallel([
 		Animated.timing(this.a, {
 		  toValue: 100,		//설정값에서 100까지.
 		  duration: 300		//300딜레이를 주면서..
 		}),
-
 		Animated.spring(this.b,{
 		  toValue: 200,		
 		  duration: 300
@@ -70,6 +79,8 @@
 	 ]).start();
 
 "
+
+
 
 
 
