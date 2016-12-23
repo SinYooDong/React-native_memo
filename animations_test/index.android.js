@@ -17,7 +17,9 @@ import {
 import BasicAnime from './Class/BasicAnime.js';
 import LayoutAnimation from './Class/LayoutAnime.js';
 import ReboundAnime from './Class/ReboundAnime.js';
-
+import SequenceTest from './Class/SequenceTest.js';
+import StaggerTest from './Class/StaggerTest.js';
+import ParallelText from './Class/ParallelText.js';
 
 export default class animations_test extends Component {
 
@@ -42,6 +44,15 @@ export default class animations_test extends Component {
       case 'reboundAnime':
         //return <BasicAnime navigator={navigator}/>;
        return <ReboundAnime navigator={navigator} />
+      case 'sequenceTest':
+         //return <BasicAnime navigator={navigator}/>;
+      return <SequenceTest navigator={navigator} />
+      case 'staggerTest':
+         //return <BasicAnime navigator={navigator}/>;
+      return <StaggerTest navigator={navigator} />
+      case 'parallelText':
+         //return <BasicAnime navigator={navigator}/>;
+      return <ParallelText navigator={navigator} />
      default:
        console.error('Encountered unexpected route: ' + route.name);
      }
@@ -63,6 +74,18 @@ export default class animations_test extends Component {
    }
    goReboundAnime(){
      this.refs.navigator.push({name: 'reboundAnime',});
+     this.drawer.closeDrawer();
+   }
+   goSequenceTest(){
+     this.refs.navigator.push({name: 'sequenceTest',});
+     this.drawer.closeDrawer();
+   }
+   goStaggerTest(){
+     this.refs.navigator.push({name: 'staggerTest',});
+     this.drawer.closeDrawer();
+   }
+   goParallelText(){
+     this.refs.navigator.push({name: 'parallelText',});
      this.drawer.closeDrawer();
    }
 
@@ -87,6 +110,24 @@ export default class animations_test extends Component {
       >
         <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>리바운드 애니메이션</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+       style ={{flex: 0.1}}
+       onPress={this.goSequenceTest.bind(this)}
+     >
+       <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>Sequence 애니메이션</Text>
+     </TouchableOpacity>
+     <TouchableOpacity
+      style ={{flex: 0.1}}
+      onPress={this.goStaggerTest.bind(this)}
+    >
+      <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>Stagger 애니메이션</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+     style ={{flex: 0.1}}
+     onPress={this.goParallelText.bind(this)}
+   >
+     <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>ParallelText 애니메이션</Text>
+   </TouchableOpacity>
    </View>
  );
     return (
