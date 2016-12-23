@@ -107,88 +107,87 @@
 
 "
 
-import Contact from './../data/Contact.js';	//사용할 Data클래스.
-import Reflux from 'reflux';
-import _ from 'lodash';
-import {ContactActions} from './../action.js';	//만들어둔 action.js 파일.
+	import Contact from './../data/Contact.js';	//사용할 Data클래스.
+	import Reflux from 'reflux';
+	import _ from 'lodash';
+	import {ContactActions} from './../action.js';	//만들어둔 action.js 파일.
 
-import React from 'react-native';
-var { AsyncStorage } = React;			//AsyncStorage라고 React-native에서 지원하는 내부 모바일 저장소라고 생각하시면됩니다-> 앱종료후에도 저장되어있음.
+	import React from 'react-native';
+	var { AsyncStorage } = React;			//AsyncStorage라고 React-native에서 지원하는 내부 모바일 저장소라고 생각하시면됩니다-> 앱종료후에도 저장되어있음.
 
-const CARD_KEY = 'tuubong-contact';		//AsyncStorage에서 사용되는 것.
+	const CARD_KEY = 'tuubong-contact';		//AsyncStorage에서 사용되는 것.
 
-var contactStore = Reflux.createStore({
-  init() {
-    //this._loadContact().done();
-    this.listenTo(ContactActions.createContact, this.createContact);
-    this.listenTo(ContactActions.deleteAllContact, this.deleteAllContact);
-    this.listenTo(ContactActions.editContact, this.editContact);
-    this.listenTo(ContactActions.getAllContact, this.asd);
-    this._contacts = [];		//직접적으로 데이터가 저장되어있는 곳.
-    this.emit();
-  },
-
-
-  async _loadContact() {
-    try {
-      var val = await AsyncStorage.getItem(CARD_KEY);
-      if (val !== null) {
-        this._contacts = JSON.parse(val).map((cardObj) => {
-          return Contact.fromObject(cardObj);
-        });
-        this.emit();
-      }
-      else {
-        console.info(`${CARD_KEY} not found on disk.`);
-      }
-    }
-    catch (error) {
-      console.error('AsyncStorage error: ', error.message);
-    }
-  },
-
-  async _writeContact() {
-    try {
-      await AsyncStorage.setItem(CARD_KEY, JSON.stringify(this._contacts));
-    }
-    catch (error) {
-      console.error('AsyncStorage error: ', error.message);
-    }
-  },
-
-  deleteAllContact() {
-    this._contacts = [];
-    this.emit();
-  },
+	var contactStore = Reflux.createStore({
+	  init() {
+	    //this._loadContact().done();
+	    this.listenTo(ContactActions.createContact, this.createContact);
+	    this.listenTo(ContactActions.deleteAllContact, this.deleteAllContact);
+	    this.listenTo(ContactActions.editContact, this.editContact);
+	    this.listenTo(ContactActions.getAllContact, this.asd);
+	    this._contacts = [];		//직접적으로 데이터가 저장되어있는 곳.
+	    this.emit();
+	  },
 
 
-  createContact(id, name, phonNumber) {
-    this._contacts.push(new Contact(id, name, phonNumber));
-    //this.emit();
-  },
+	  async _loadContact() {
+	    try {
+	      var val = await AsyncStorage.getItem(CARD_KEY);
+	      if (val !== null) {
+		this._contacts = JSON.parse(val).map((cardObj) => {
+		  return Contact.fromObject(cardObj);
+		});
+		this.emit();
+	      }
+	      else {
+		console.info(`${CARD_KEY} not found on disk.`);
+	      }
+	    }
+	    catch (error) {
+	      console.error('AsyncStorage error: ', error.message);
+	    }
+	  },
 
-  emit() {
-    this._writeContact().done();
-    this.trigger(this._contacts);
-  },
+	  async _writeContact() {
+	    try {
+	      await AsyncStorage.setItem(CARD_KEY, JSON.stringify(this._contacts));
+	    }
+	    catch (error) {
+	      console.error('AsyncStorage error: ', error.message);
+	    }
+	  },
 
-  asd(){
-    this.getAllContact().done();
-  },
+	  deleteAllContact() {
+	    this._contacts = [];
+	    this.emit();
+	  },
 
-  async getAllContact(){
-    try {
-    var val = await AsyncStorage.getItem(CARD_KEY);
-    //console.log(var[0]);
-    }
-    catch (error) {
-      console.error('AsyncStorage error: ', error.message);
-    }
-  }
 
-});
+	  createContact(id, name, phonNumber) {
+	    this._contacts.push(new Contact(id, name, phonNumber));
+	    //this.emit();
+	  },
 
-export default contactStore;
+	  emit() {
+	    this._writeContact().done();
+	    this.trigger(this._contacts);
+	  },
+
+	  asd(){
+	    this.getAllContact().done();
+	  },
+
+	  async getAllContact(){
+	    try {
+	    var val = await AsyncStorage.getItem(CARD_KEY);
+	    //console.log(var[0]);
+	    }
+	    catch (error) {
+	      console.error('AsyncStorage error: ', error.message);
+	    }
+	  }
+
+	});
+	export default contactStore;
 
 "
 
@@ -217,10 +216,9 @@ export default contactStore;
 
 "
 
-createContact(id, name, phonNumber) {
-    this._contacts.push(new Contact(id, name, phonNumber));
-  },
-
+	createContact(id, name, phonNumber) {
+	    this._contacts.push(new Contact(id, name, phonNumber));
+	  }
 
 "
 'this._contacts'에 데이터를 넣은 녀석입니다. 다른 파일에서 'ContactActions.createContact('1','홍길동','01012345678')'를 호출 하면 홍길동의 정보가 
@@ -232,7 +230,7 @@ createContact(id, name, phonNumber) {
 
 "
 
-import ContactStore from './../../src/stores/ContactStore.js'
+	import ContactStore from './../../src/stores/ContactStore.js'
 
 "
 
